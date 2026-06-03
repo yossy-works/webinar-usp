@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://yossy-works.github.io/webinar-usp/assets/banner.png" />
   <meta property="og:url" content="https://yossy-works.github.io/webinar-usp/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="USPマーケター道場 特別勉強会" />
+  <meta property="og:site_name" content="USPマーケターズ 特別勉強会" />
   <meta property="og:locale" content="ja_JP" />
 
   <!-- Twitter Card -->
@@ -103,68 +103,56 @@
       object-position: center top;
     }
 
-    .hero__overlay {
+    .visually-hidden {
       position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: clamp(1.5rem, 5vw, 3rem);
-      background: linear-gradient(
-        to top,
-        rgba(26, 26, 26, 0.72) 0%,
-        rgba(26, 26, 26, 0.35) 45%,
-        transparent 100%
-      );
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    .hero__label {
-      font-family: var(--font-accent);
-      font-size: clamp(0.75rem, 2vw, 0.875rem);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.75);
+    /* Event info */
+    .event-info {
+      background: var(--color-secondary);
+      border-bottom: 1px solid rgba(139, 26, 47, 0.12);
+      padding: clamp(1.25rem, 4vw, 1.75rem) clamp(1.25rem, 5vw, 2rem);
+    }
+
+    .event-info__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .event-info__label {
+      font-family: var(--font-serif);
+      font-size: clamp(0.9375rem, 2.5vw, 1.0625rem);
+      font-weight: 600;
+      color: var(--color-accent);
       margin: 0 0 0.5rem;
+      letter-spacing: 0.06em;
     }
 
-    .hero__title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 5vw, 2.25rem);
-      font-weight: 700;
-      line-height: 1.4;
-      color: #fff;
+    .event-info__date {
+      font-family: var(--font-sans);
+      font-size: clamp(0.875rem, 2.2vw, 0.9375rem);
+      color: var(--color-text-sub);
       margin: 0;
+      line-height: 1.6;
     }
 
-    .hero__subtitle {
-      font-family: var(--font-serif);
-      font-size: clamp(1rem, 3vw, 1.25rem);
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.9);
-      margin: 0.35rem 0 0;
-    }
-
-    .hero__meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-    }
-
-    .hero__badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.4rem 1rem;
-      font-size: 0.8125rem;
+    .event-info__date time {
       font-weight: 500;
-      color: #fff;
-      background: var(--color-accent);
-      border-radius: 2px;
+      color: var(--color-text);
     }
 
-    .hero__badge--outline {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+    .event-info__sep {
+      margin: 0 0.5em;
+      color: rgba(139, 26, 47, 0.35);
     }
 
     /* Layout */
@@ -174,6 +162,10 @@
 
     .section {
       padding: var(--section-gap) clamp(1.25rem, 5vw, 2rem) 0;
+    }
+
+    .section--compact-top {
+      padding-top: clamp(2.5rem, 6vw, 3.5rem);
     }
 
     .section__inner {
@@ -345,22 +337,23 @@
       margin: 0 0 1rem;
     }
 
-    .speaker__tags {
+    .speaker__bio {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
-    .speaker__tags li {
+    .speaker__bio li {
       font-size: 0.9375rem;
+      line-height: 1.75;
       padding-left: 1rem;
       position: relative;
     }
 
-    .speaker__tags li::before {
+    .speaker__bio li::before {
       content: "";
       position: absolute;
       left: 0;
@@ -389,6 +382,19 @@
       letter-spacing: 0.04em;
     }
 
+    @media (min-width: 768px) {
+      .hero__image-wrap {
+        max-width: 960px;
+        max-height: none;
+        margin-inline: auto;
+      }
+
+      .hero__image {
+        object-fit: contain;
+        object-position: center center;
+      }
+    }
+
     @media (max-width: 480px) {
       .agenda::before {
         left: 0;
@@ -410,11 +416,11 @@
         text-align: center;
       }
 
-      .speaker__tags li {
+      .speaker__bio li {
         padding-left: 0;
       }
 
-      .speaker__tags li::before {
+      .speaker__bio li::before {
         display: none;
       }
     }
@@ -430,43 +436,46 @@
         height="630"
         alt="USPが教えてくれたこと — セミナーバナー"
       />
-      <div class="hero__overlay">
-        <p class="hero__label">USPマーケター道場 特別勉強会</p>
-        <h1 class="hero__title">USPが教えてくれたこと</h1>
-        <p class="hero__subtitle">〜10年間の実践のすべて〜</p>
-        <div class="hero__meta">
-          <span class="hero__badge">2026年6月18日（木）14:00〜16:00</span>
-          <span class="hero__badge hero__badge--outline">オンライン勉強会</span>
-        </div>
-      </div>
+      <h1 class="visually-hidden">USPが教えてくれたこと〜10年間の実践のすべて〜</h1>
     </div>
   </header>
 
+  <section class="event-info fade-in fade-in--delay-1" aria-label="開催情報">
+    <div class="event-info__inner">
+      <p class="event-info__label">USPマーケターズ 特別勉強会</p>
+      <p class="event-info__date">
+        <time datetime="2026-06-18T14:00/16:00">2026年6月18日（木）14:00〜16:00</time>
+        <span class="event-info__sep" aria-hidden="true">／</span>
+        オンライン
+      </p>
+    </div>
+  </section>
+
   <main id="main">
-    <section class="section fade-in fade-in--delay-1" aria-labelledby="about-heading">
+    <section class="section section--compact-top fade-in fade-in--delay-2" aria-labelledby="about-heading">
       <div class="section__inner">
         <span class="section__heading-en">About</span>
-        <h2 class="section__heading" id="about-heading">このセミナーで話すこと</h2>
+        <h2 class="section__heading" id="about-heading">このセミナーでお話すること</h2>
         <hr class="section__rule" />
-        <p class="section__lead">USPマーケティングを学んでいる受講生の皆さまに向けて、10年間の実践から得た等身大の経験をお話しします。</p>
+        <p class="section__lead">USPマーケティングを学ばれている皆さまに向けて、10年間の実践から得た等身大の経験をお話します。</p>
         <ul class="points">
           <li class="points__item">
             <span class="points__num" aria-hidden="true">01</span>
-            <p class="points__title">USPとの出会いと、考え方の転換点</p>
+            <p class="points__title">USPとの出会いで起きたブレイクスルー</p>
           </li>
           <li class="points__item">
             <span class="points__num" aria-hidden="true">02</span>
-            <p class="points__title">ロゴ1枚の依頼が、プロジェクト全体に変わった実話</p>
+            <p class="points__title">"1点"の依頼を大型案件に変えるヒント</p>
           </li>
           <li class="points__item">
             <span class="points__num" aria-hidden="true">03</span>
-            <p class="points__title">丁寧なヒアリングが突破口になった理由</p>
+            <p class="points__title">ヒアリングは感覚ではなく再現性のある技術</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <section class="section section--secondary fade-in fade-in--delay-2" aria-labelledby="agenda-heading">
+    <section class="section section--secondary fade-in fade-in--delay-3" aria-labelledby="agenda-heading">
       <div class="section__inner">
         <span class="section__heading-en">Agenda</span>
         <h2 class="section__heading" id="agenda-heading">タイムテーブル</h2>
@@ -478,19 +487,19 @@
           </li>
           <li class="agenda__item">
             <time class="agenda__time" datetime="14:20/14:35">14:20</time>
-            <span class="agenda__content">Part 1｜USPとの出会い（15分）</span>
+            <span class="agenda__content">Part 1｜USPとの出会い（10分）</span>
           </li>
           <li class="agenda__item">
             <time class="agenda__time" datetime="14:35/14:50">14:35</time>
-            <span class="agenda__content">Part 2｜実践の過程でぶつかった壁（15分）</span>
+            <span class="agenda__content">Part 2｜実践の過程でぶつかった壁（10分）</span>
           </li>
           <li class="agenda__item">
             <time class="agenda__time" datetime="14:50/15:10">14:50</time>
-            <span class="agenda__content">Part 3｜小さな入り口から大きなプロジェクトへ（20分）</span>
+            <span class="agenda__content">Part 3｜小さな入り口をチャンスに変える方法（20分）</span>
           </li>
           <li class="agenda__item">
             <time class="agenda__time" datetime="15:10/15:20">15:10</time>
-            <span class="agenda__content">Part 4｜今だから言えること（10分）</span>
+            <span class="agenda__content">Part 4｜ヒアリングを磨けば商品が売れる不思議（20分）</span>
           </li>
           <li class="agenda__item">
             <time class="agenda__time" datetime="15:20/15:50">15:20</time>
@@ -498,7 +507,7 @@
           </li>
           <li class="agenda__item">
             <time class="agenda__time" datetime="15:50/16:00">15:50</time>
-            <span class="agenda__content">まとめ・クロージング（10分）</span>
+            <span class="agenda__content">まとめ（10分）</span>
           </li>
         </ol>
       </div>
@@ -520,9 +529,13 @@
           <div>
             <h3 class="speaker__name">芳村 裕太</h3>
             <p class="speaker__role">LLC Rip.D 代表</p>
-            <ul class="speaker__tags">
-              <li>経営 × 現場 × AIの通訳者</li>
-              <li>USPマーケティング実践歴10年</li>
+            <ul class="speaker__bio">
+              <li>1985年生まれ、大阪府出身。</li>
+              <li>過去1000人以上の経営者との対話を行い、加藤先生から学んだUSP Marketingを徹底的に実践。</li>
+              <li>BtoB領域では全国の中小企業の事業成長支援実績300社以上。</li>
+              <li>BtoC領域では通信商材のセールスで全国1位を獲得。</li>
+              <li>BtoG領域ではIPO準備中のスタートアップでのインサイドセールスにて年間500本以上の新規商談を創出し全社1位を獲得。</li>
+              <li>現在はこれまでの実績を土台に、企業のAI導入・活用支援を行っている。</li>
             </ul>
           </div>
         </article>
@@ -538,7 +551,7 @@
       height="80"
       alt="LLC Rip.D"
     />
-    <p class="site-footer__copy">&copy; LLC Rip.D</p>
+    <p class="site-footer__copy">&copy; 2026 LLC Rip.D All Rights Reserved.</p>
   </footer>
 </body>
 </html>
