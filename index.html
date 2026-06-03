@@ -184,8 +184,24 @@
       font-size: clamp(1.375rem, 4vw, 1.75rem);
       font-weight: 600;
       line-height: 1.5;
-      margin: 0 0 0.5rem;
+      margin: 0;
+      padding-bottom: 1rem;
       color: var(--color-text);
+      position: relative;
+    }
+
+    .section__heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 3rem;
+      height: 2px;
+      background: var(--color-accent);
+    }
+
+    .section__header {
+      margin-bottom: 2rem;
     }
 
     .section__heading-en {
@@ -203,14 +219,6 @@
       font-size: 0.9375rem;
       color: var(--color-text-sub);
       margin: 0 0 2.5rem;
-    }
-
-    .section__rule {
-      width: 3rem;
-      height: 2px;
-      background: var(--color-accent);
-      margin-bottom: 2rem;
-      border: none;
     }
 
     /* Points */
@@ -309,32 +317,49 @@
 
     /* Speaker */
     .speaker {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: clamp(1.25rem, 4vw, 2rem);
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    .speaker__photo {
-      width: 140px;
-      aspect-ratio: 1;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 2px;
-      background: var(--color-secondary);
+    .speaker__title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.35rem 0.75rem;
+      margin: 0 0 0.75rem;
     }
 
     .speaker__name {
       font-family: var(--font-serif);
       font-size: 1.25rem;
       font-weight: 600;
-      margin: 0 0 0.25rem;
+      margin: 0;
     }
 
     .speaker__role {
       font-size: 0.875rem;
       color: var(--color-text-sub);
+      margin: 0;
+    }
+
+    .speaker__link {
       margin: 0 0 1rem;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    .speaker__link a {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(139, 26, 47, 0.25);
+      transition: border-color 0.2s ease;
+    }
+
+    .speaker__link a:hover {
+      border-bottom-color: var(--color-accent);
     }
 
     .speaker__bio {
@@ -344,6 +369,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+      width: 100%;
     }
 
     .speaker__bio li {
@@ -393,6 +419,38 @@
         object-fit: contain;
         object-position: center center;
       }
+
+      .speaker {
+        display: block;
+        text-align: left;
+      }
+
+      .speaker__title {
+        justify-content: flex-start;
+        margin-bottom: 0.5rem;
+      }
+
+      .speaker__name {
+        font-size: 1.5rem;
+      }
+
+      .speaker__role {
+        font-size: 1rem;
+      }
+
+      .speaker__link {
+        margin: 0 0 0.75rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .speaker__bio li {
+        padding-left: 0;
+      }
+
+      .speaker__bio li::before {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -408,20 +466,6 @@
 
       .agenda__item::before {
         left: 0;
-      }
-
-      .speaker {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
-      }
-
-      .speaker__bio li {
-        padding-left: 0;
-      }
-
-      .speaker__bio li::before {
-        display: none;
       }
     }
   </style>
@@ -454,9 +498,10 @@
   <main id="main">
     <section class="section section--compact-top fade-in fade-in--delay-2" aria-labelledby="about-heading">
       <div class="section__inner">
-        <span class="section__heading-en">About</span>
-        <h2 class="section__heading" id="about-heading">このセミナーでお話すること</h2>
-        <hr class="section__rule" />
+        <div class="section__header">
+          <span class="section__heading-en">About</span>
+          <h2 class="section__heading" id="about-heading">このセミナーでお話すること</h2>
+        </div>
         <p class="section__lead">USPマーケティングを学ばれている皆さまに向けて、10年間の実践から得た等身大の経験をお話します。</p>
         <ul class="points">
           <li class="points__item">
@@ -477,9 +522,10 @@
 
     <section class="section section--secondary fade-in fade-in--delay-3" aria-labelledby="agenda-heading">
       <div class="section__inner">
-        <span class="section__heading-en">Agenda</span>
-        <h2 class="section__heading" id="agenda-heading">タイムテーブル</h2>
-        <hr class="section__rule" />
+        <div class="section__header">
+          <span class="section__heading-en">Agenda</span>
+          <h2 class="section__heading" id="agenda-heading">タイムテーブル</h2>
+        </div>
         <ol class="agenda">
           <li class="agenda__item">
             <time class="agenda__time" datetime="14:00/14:20">14:00</time>
@@ -515,29 +561,28 @@
 
     <section class="section fade-in fade-in--delay-3" aria-labelledby="speaker-heading">
       <div class="section__inner">
-        <span class="section__heading-en">Speaker</span>
-        <h2 class="section__heading" id="speaker-heading">登壇者プロフィール</h2>
-        <hr class="section__rule" />
+        <div class="section__header">
+          <span class="section__heading-en">Speaker</span>
+          <h2 class="section__heading" id="speaker-heading">登壇者プロフィール</h2>
+        </div>
         <article class="speaker">
-          <img
-            class="speaker__photo"
-            src="assets/yoshimura_profile.png"
-            width="400"
-            height="400"
-            alt="芳村 裕太"
-          />
-          <div>
-            <h3 class="speaker__name">芳村 裕太</h3>
-            <p class="speaker__role">LLC Rip.D 代表</p>
-            <ul class="speaker__bio">
-              <li>1985年生まれ、大阪府出身。</li>
-              <li>過去1000人以上の経営者との対話を行い、加藤先生から学んだUSP Marketingを徹底的に実践。</li>
-              <li>BtoB領域では全国の中小企業の事業成長支援実績300社以上。</li>
-              <li>BtoC領域では通信商材のセールスで全国1位を獲得。</li>
-              <li>BtoG領域ではIPO準備中のスタートアップでのインサイドセールスにて年間500本以上の新規商談を創出し全社1位を獲得。</li>
-              <li>現在はこれまでの実績を土台に、企業のAI導入・活用支援を行っている。</li>
-            </ul>
+          <div class="speaker__intro">
+            <div class="speaker__title">
+              <h3 class="speaker__name">芳村 裕太</h3>
+              <p class="speaker__role">LLC Rip.D 代表</p>
+            </div>
+            <p class="speaker__link">
+              <a href="https://profile.rip-collabo.com/sales" target="_blank" rel="noopener noreferrer">芳村プロフィールサイトはこちら</a>
+            </p>
           </div>
+          <ul class="speaker__bio">
+            <li>1985年生まれ、大阪府出身。</li>
+            <li>過去1000人以上の経営者との対話を行い、加藤先生から学んだUSP Marketingを徹底的に実践。</li>
+            <li>BtoB領域では全国の中小企業の事業成長支援実績300社以上。</li>
+            <li>BtoC領域では通信商材のセールスで全国1位を獲得。</li>
+            <li>BtoG領域ではIPO準備中のスタートアップでのインサイドセールスにて年間500本以上の新規商談を創出し全社1位を獲得。</li>
+            <li>現在はこれまでの実績を土台に、企業のAI導入・活用支援を行っている。</li>
+          </ul>
         </article>
       </div>
     </section>
